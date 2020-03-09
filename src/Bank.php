@@ -2045,27 +2045,29 @@ class Bank {
         }
 
         //开始在线查询
-        $query_data = [
-            '_input_charset' => 'utf-8',
-            'cardNo'         => $cardNo,
-            'cardBinCheck'   => 'true'
-        ];
-        $result_online = self::get ('https://ccdcapi.alipay.com/validateAndCacheCardInfo.json', $query_data);
+        if($onLine === true){
+            $query_data = [
+                '_input_charset' => 'utf-8',
+                'cardNo'         => $cardNo,
+                'cardBinCheck'   => 'true'
+            ];
+            $result_online = self::get ('https://ccdcapi.alipay.com/validateAndCacheCardInfo.json', $query_data);
 
-        if ($result_online) {
+            if ($result_online) {
 
-            $result_online_array = json_decode ($result_online, true);
+                $result_online_array = json_decode ($result_online, true);
 
-            if($result_online_array['stat'] == 'ok'){
-                $result['status'] = true;
-                $result['data']['cardType'] = $result_online_array['cardType'];
-                $result['data']['bank'] = $result_online_array['bank'];
-                $result['data']['bankName'] = self::getBankName ($result_online_array['bank']);
-                $result['data']['cardNo'] = $cardNo;
+                if($result_online_array['stat'] == 'ok'){
+                    $result['status'] = true;
+                    $result['data']['cardType'] = $result_online_array['cardType'];
+                    $result['data']['bank'] = $result_online_array['bank'];
+                    $result['data']['bankName'] = self::getBankName ($result_online_array['bank']);
+                    $result['data']['cardNo'] = $cardNo;
+                }
+
             }
-            
         }
-
+        $result['msg'] = "查询不到该卡信息";
         return $result;
 
 
