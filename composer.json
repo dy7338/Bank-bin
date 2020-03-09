@@ -5,7 +5,7 @@
     "require": {
         "php": ">=5.6"
     },
-    "license": "GPL",
+    "license": "MIT",
     "authors": [
         {
             "name": "王小乐",
