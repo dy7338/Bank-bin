@@ -1,0 +1,20 @@
+{
+    "name": "dy7338/bank_bin",
+    "description": "银行卡bin信息查询",
+    "type": "library",
+    "require": {
+        "php": ">=5.6"
+    },
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "王小乐",
+            "email": "491286281@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "dy7338\\Bank_bin\\": "src/"
+        }
+    }
+}
