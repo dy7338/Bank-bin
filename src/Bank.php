@@ -2056,11 +2056,14 @@ class Bank {
 
             $result_online_array = json_decode ($result_online, true);
 
-            $result['status'] = true;
-            $result['data']['cardType'] = $result_online_array['cardType'];
-            $result['data']['bank'] = $result_online_array['bank'];
-            $result['data']['bankName'] = self::getBankName ($result_online_array['bank']);
-            $result['data']['cardNo'] = $cardNo;
+            if($result_online_array['stat'] == 'ok'){
+                $result['status'] = true;
+                $result['data']['cardType'] = $result_online_array['cardType'];
+                $result['data']['bank'] = $result_online_array['bank'];
+                $result['data']['bankName'] = self::getBankName ($result_online_array['bank']);
+                $result['data']['cardNo'] = $cardNo;
+            }
+            
         }
 
         return $result;
