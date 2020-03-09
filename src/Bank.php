@@ -2063,6 +2063,7 @@ class Bank {
                     $result['data']['bank'] = $result_online_array['bank'];
                     $result['data']['bankName'] = self::getBankName ($result_online_array['bank']);
                     $result['data']['cardNo'] = $cardNo;
+                    return $result;
                 }
 
             }
